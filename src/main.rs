@@ -63,13 +63,13 @@ fn main() {
             .resource("", |r| r.get().f(|_| format!("Prefix With /api")))
             // 傳送 http 狀態
             .resource("ok", |r| r.get().f(|_| HttpResponse::Ok()))
-            // 方法使用 Method::GET 判斷，傳送 http 狀態
+            // 使用 Method::GET 判斷方法
             .resource("method", |r| {
                 r.method(Method::GET).f(|_| HttpResponse::Ok())
             })
-            // 使用 bodu 回傳純文字
+            // 使用 body 回傳純文字
             .resource("body", |r| r.get().f(|_| HttpResponse::Ok().body("body")))
-            // 回傳 JSON Data
+            // 回傳 JSON Todo 物件
             .resource("/json", |r| r.get().with(render))
             // 展示不同方法請求、純文字回傳
             .resource("/text", |r| {
